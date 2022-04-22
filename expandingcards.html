@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="expandingcards.js"></script>
+    <title>Expanding Cards</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        button {
+            margin: 10px;
+        }
+
+        .div-wrapping-webcomponent {
+            width: 100vw;
+            height: 500px;
+        }
+
+        /* style the card as you wish: class=".card-content" is the main wrapper for each card*/
+        .card-content {
+            background-color: rgba(245, 222, 179, 0.493);
+            padding: 10px;
+        }
+
+        /* @media: cards will stack vertically at < 700px */
+    </style>
+</head>
+
+
+
+<body>
+    <!-- button changes background-color attribute. This is only here to show how you can change wc attribute with vanilla JS. -->
+    <button>
+        Click to change backgroundcolor
+    </button>
+
+
+    <!-- This <div> below is used to set the width & height of <otj-expandingcards>. Wrap <otj-expandingcards> in a <div> and set the height and width of the <div> as you need. <otj-expandingcards> will spread to fill the height and width. -->
+    <div class="div-wrapping-webcomponent">
+
+        <otj-expandingcards backgroundcolor="transparent">
+            <!-- you can pass 0 to 12 cards here. Each card should be passed in like shown below. You can use the .card-content class to style the card as you wish. If you don't, card content will be aligned to the center by default (justify-content, align-items: center)  --> 
+            <div slot="card1" class="card-content">
+                <!-- example card content: -->
+                <p>you can put anything in here and style it anyway you want</p>
+            </div>
+
+            <div slot="card2" class="card-content">
+                <!-- put the content of this card here -->
+            </div>
+
+            <div slot="card3" class="card-content">
+                <!-- put the content of this card here -->
+            </div>
+
+            <div slot="card4" class="card-content">
+                <!-- put the content of this card here -->
+            </div>
+        </otj-expandingcards>
+
+    </div>
+    
+
+
+    <!-- set `backgroundcolor` attribute on <otj-expandingcards backgroundcolor="transparent"> like this -->
+    <script>
+        let btn = document.querySelector('button');
+        let wc = document.querySelector('otj-expandingcards');
+
+        btn.addEventListener('click', () => {
+            if (wc.getAttribute('backgroundcolor') === 'transparent') wc.setAttribute('backgroundcolor', 'steelblue')
+            else wc.setAttribute('backgroundcolor', 'transparent');
+        });
+    </script>
+</body>
+</html>
